@@ -25,10 +25,10 @@ Optional Installation
 ---------------------
 
 ### pandoc
-See the [official documentation](http://www.pandoc.org/installing.html)
+See the [official documentation](http://www.pandoc.org/installing.html).
 
 ### wkhtmltopdf
-See the [official documentation](http://wkhtmltopdf.org/downloads.html)
+See the [official documentation](http://wkhtmltopdf.org/downloads.html).
 
 ### git
 See the [official documentation](https://git-scm.com/downloads) for installing `git`.
