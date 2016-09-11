@@ -25,20 +25,20 @@ Optional Installation
 ---------------------
 
 ### pandoc
-See the [official documentation][http://www.pandoc.org/installing.html]
+See the [official documentation](http://www.pandoc.org/installing.html)
 
 ### wkhtmltopdf
-See the [official documentation][http://wkhtmltopdf.org/downloads.html]
+See the [official documentation](http://wkhtmltopdf.org/downloads.html)
 
 ### git
-See the [official documentation][https://git-scm.com/downloads] for installing `git`.
+See the [official documentation](https://git-scm.com/downloads) for installing `git`.
 
-Then, for a quickstart, move to the directory where your source markdown file, e.g. `source.md`, is located.
+Then, for a quickstart, move to the directory where your source markdown file, e.g. `abstract.md`, is located.
 Run the following:
 
 ~~~bash
     git init
-    git add source.md
+    git add abstract.md
 ~~~
 
 ...and you are done. The script will take care of the rest.
