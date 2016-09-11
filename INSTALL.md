@@ -8,7 +8,7 @@ Pre-requisites
 
 Optional Requirements
 ---------------------
-- python/blessed or python/blessings (for colored terminal output)
+- `python/blessed` or `python/blessings` from PyPI (for colored terminal output)
 - Pandoc (for HTML/PDF export)
 - wkhtmltopdf (for PDF export)
 - git (for backups)
