@@ -14,7 +14,7 @@ The VCS capabilities are managed through `git`, which should be installed
 and set up separately.
 """
 
-#    Copyright (C) 2015 Riccardo Metere <metere@cbs.mpg.de>
+#    Copyright (C) 2015-2016 Riccardo Metere <metere@cbs.mpg.de>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ and set up separately.
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # ======================================================================
-# :: Future Imports
+# :: Future Imports (including `future` PyPI package, if available)
 from __future__ import (
     division, absolute_import, print_function, unicode_literals)
 
@@ -66,7 +66,7 @@ __version__ = '0.1.0.0'
 INFO = {
     'name': 'ISMRM_abstract',
     'author': 'Riccardo Metere <metere@cbs.mpg.de>',
-    'copyright': 'Copyright (C) 2016',
+    'copyright': 'Copyright (C) 2015-2016',
     'license': 'License: GNU General Public License version 3 (GPLv3)',
     'notice':
         """
