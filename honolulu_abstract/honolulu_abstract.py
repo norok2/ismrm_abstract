@@ -14,7 +14,7 @@ The VCS capabilities are managed through `git`, which should be installed
 and set up separately.
 """
 
-#    Copyright (C) 2015-2016 Riccardo Metere <metere@cbs.mpg.de>
+#    Copyright (C) 2015 Riccardo Metere <metere@cbs.mpg.de>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ and set up separately.
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # ======================================================================
-# :: Future Imports (including `future` PyPI package, if available)
+# :: Future Imports
 from __future__ import (
     division, absolute_import, print_function, unicode_literals)
 
@@ -66,7 +66,7 @@ __version__ = '0.1.0.0'
 INFO = {
     'name': 'ISMRM_abstract',
     'author': 'Riccardo Metere <metere@cbs.mpg.de>',
-    'copyright': 'Copyright (C) 2015-2016',
+    'copyright': 'Copyright (C) 2016',
     'license': 'License: GNU General Public License version 3 (GPLv3)',
     'notice':
         """
@@ -110,7 +110,8 @@ D_LIMITS = dict((
 # :: external tools
 TOOLS = dict((
     ('md2html',
-     'pandoc --standalone --mathjax {css_str} --section-divs'
+     'pandoc --standalone --mathjax --section-divs'
+     ' {css_str} {self_contained_str} '
      ' --read markdown+tex_math_double_backslash --write html5'),
     ('html2pdf',
      'wkhtmltopdf --page-size A4 --margin-bottom 15mm --margin-left 15mm '
@@ -137,9 +138,9 @@ body {
     font: normal normal 300 12pt "Roboto", sans-serif; }
 h1, h2, h3, h4, h5, h6 { margin: 0.8ex auto 0ex; clear: both; }
 h1, h2, h3 { margin: 2ex auto 0ex; font-weight: 400; }
-h1 { font-size: 135%; color: #336; margin: 1.6ex auto 0ex; }
-h2 { font-size: 120%; color: #339; margin: 1.2ex auto 0ex; }
-h3 { font-size: 105%; color: #33c; margin: 1.0ex auto 0ex; }
+h1 { font-size: 140%; color: #336; margin: 1.6ex auto 0ex; }
+h2 { font-size: 125%; color: #339; margin: 1.2ex auto 0ex; }
+h3 { font-size: 110%; color: #33c; margin: 1.0ex auto 0ex; }
 p { font-size: 100%; margin: 0.4ex auto 1ex; }
 hr { clear: both; }
 section { overflow: auto; margin: 0ex; padding; 0ex; }
@@ -164,7 +165,7 @@ img { max-width: 100%; max-height: 96vh; }
 #test-results > p { text-align: center; font-size: 130%; }
 
 @media print {
-    body { max-width: 100%; 11pt; }
+    body { max-width: 100%; font-size: 11pt; }
     h1, h2, h3, h4, h5, h6 {
         page-break-before: auto; page-break-after: avoid; }
     p, span { page-break-inside: avoid; page-break-after: auto; }
@@ -782,6 +783,7 @@ def honolulu(
         backup=True,
         log=True,
         css=None,
+        self_contained=False,
         encoding='utf-8',
         figs_dpi=72,
         limits=D_LIMITS,
@@ -798,6 +800,7 @@ def honolulu(
         attach (bool): Attach results to output/export file(s).
         backup (bool): Backups before processing.
         css (list[str]): Specify the CSS sources.
+        self_contained (bool): Specify if HTML export is self-contained.
         figs_dpi (float): Resolution of the figures in exports.
         encoding (str): The encoding to use.
         limits (dict): Limits to be used for testing.
@@ -923,6 +926,7 @@ def honolulu(
         msg('CSS: {}'.format(css))
 
         html_filepath = os.path.splitext(in_filepath)[0] + '.html'
+        self_contained_str = '--self-contained' if self_contained else ''
         if check_redo([in_filepath, __file__], [html_filepath], force):
             with open(in_filepath, 'rb') as fileobj:
                 in_pipe = fileobj.read().decode(encoding)
@@ -1017,6 +1021,10 @@ def handle_arg():
         '-c', '--css',
         default=None,
         help='specify the CSS to use for HTML/PDF export [%(default)s]')
+    arg_parser.add_argument(
+        '-s', '--self-contained',
+        action='store_true',
+        help='toggle if HTML export should be self contained [%(default)s]')
     arg_parser.add_argument(
         '-e', '--encoding', metavar='ENCODING',
         default='utf-8',
