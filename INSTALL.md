@@ -17,8 +17,8 @@ Optional Requirements
 Installation
 ------------
 - copy the script `honolulu_abstract.py` into a folder
-- run it
 - (optionally make sure that the folder is in your $PATH)
+- Done! :-)
 
 
 Optional Installation 
