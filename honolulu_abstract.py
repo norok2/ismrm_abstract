@@ -30,11 +30,16 @@ and set up separately.
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # ======================================================================
-# :: Future Imports
-from __future__ import division
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import unicode_literals
+# :: Future Imports (including `future` PyPI package, if available)
+from __future__ import (
+    division, absolute_import, print_function, unicode_literals)
+
+try:
+    from builtins import (
+        bytes, dict, int, list, object, range, str, ascii, chr, hex, input,
+        next, oct, open, pow, round, super, filter, map, zip)
+except ImportError:
+    pass
 
 # ======================================================================
 # :: Python Standard Library Imports
