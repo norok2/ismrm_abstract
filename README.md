@@ -106,11 +106,9 @@ A full-featured command-line help is availeble, and reported here for convenienc
 Please refer to the in-code documentation or the source code itself for further reference.
 
 
-### Side Notes
+### Notes
 
-As a side note, I would have liked to have a submission sistem working more like this script (i.e. with a predictable behavior and with copy/paste capabilities) rather than that half-way WYSIWYG user-interface provided.
-Incidentally, this is also pretty easy to implement, the offline version being more or less in place, which is relatively straightforward to implement for online use.
-If other (enough) people feel the same, we could probably put some pressure to have it this way.
+Probably, at some point there will be a submission system accepting MarkDown (or even HTML) with some JavaScript WYSIWYG editor (like e.g. [StackEdit](https://stackedit.io) or [CKEditor](http://ckeditor.com)). Or even more sophisticated solutions like [Authorea](http://www.authorea.com) or [Overleaf](http://www.overleaf.com). Meanwhile, here we go!
 
     If you have any question, please feel free to contact me.
 
@@ -136,3 +134,4 @@ Additionally, keep in mind the recommendation from the ISMRM are reported below.
 - [2017 Call for Abstracts](http://www.ismrm.org/2017-annual-meeting-exhibition/2017-call-for-abstracts/)
 
 for further information.
+
