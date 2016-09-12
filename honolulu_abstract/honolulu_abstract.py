@@ -137,7 +137,6 @@ D_TESTS_FINAL = 'Final Result: {result}'
 D_CSS = [
     'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,'
     '400|Roboto+Mono:100,100i,300,300i,400,400i']
-D_CSS = []
 D_CSS_FILEPATH = 'default.css'
 D_CSS_FILECONTENT = \
     '/* automatically generate by `{__file__}` */'.format(**locals()) + '''
