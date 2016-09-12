@@ -29,7 +29,7 @@ Fortunately, this formatting is (or should be) seldom used in such documents and
 
 ### Mathematical Formulae
 
-To properly deal with mathematical formulae it is possible to use the so called *double backslash* MarkDown extension. This means that mathematical formulae can be written using standard [LaTeX](https://www.latex-project.org/) like \\(\LaTeX\\) and will be beautifully rendered by [MathJax](https://www.mathjax.org/). Therefore, to write mathematical equations you should use: `\\(` and `\\)` for inline math elements, or `\\[` and `\\]` for display math elements.
+To properly deal with mathematical formulae it is possible to use the so called *double backslash* MarkDown extension. This means that mathematical formulae can be written using standard [LaTeX](https://www.latex-project.org/) and will be beautifully rendered by [MathJax](https://www.mathjax.org/). Therefore, to write mathematical equations you should use: `\\(` and `\\)` for inline math elements, or `\\[` and `\\]` for display math elements.
 
 Please note that for the purpose of submission a custom notation is suggested, making use of `$$` and `$$$` symbols for delimiting display and inline math environments, respectively. The preview system actually also recognize the standard *single backslash* MarkDown extension, but for some reasons this method seems to be deprecated. The *double backslash* notation has been adopted by this script in the hope that any eventual inaccuracies related to this approach will not go unnoticed at the time of submission.
 
