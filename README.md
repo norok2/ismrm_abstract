@@ -55,7 +55,7 @@ If you have not yet enough motivation to submit your brand new research, have a 
 
 
 ### Explanation of 'Test Results'
-Each line consist of an item (e.g. word count or file size) followed by the numeric result of the analysis, \\(x\\) and the corresponding limit \\(x_\mathrm{Max}\\) separated by a `/`, i.e. \\(x/x_\mathrm{Max}\\).
+Each line consist of an item (e.g. word count or file size) followed by the numeric result of the analysis, \(x\) and the corresponding limit \(x_\mathrm{Max}\) separated by a `/`, i.e. \(x/x_\mathrm{Max}\).
 Items subject to limitations are colored in <span class="green">green</span> and end with `OK`, or in <span class="red">red</span> and end with `ERR`, depending on whether the limits are respected or exceeded, respectively. Non-colored items are either not subject to limitations (if the corresponding limit is equal to 0) or they contribute to the items whose name end with a gliph in parenthesis (if the corresponding limit is equal to the the same gliph).
 
 
