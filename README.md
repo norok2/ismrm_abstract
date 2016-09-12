@@ -95,6 +95,13 @@ A full-featured command-line help is availeble, and reported here for convenienc
     v.0.1.0.1 - Riccardo Metere <metere@cbs.mpg.de>
     License: GNU General Public License version 3 (GPLv3)
 
+Please refer to the in-code documentation or the source code itself for further reference.
+
+## Explanation of 'Test Results'
+Each line consist of an item (e.g. word count or file size) followed by the numeric result of the analysis, \\(x\\) and the corresponding limit \\(x_\mathrm{Max}\\) separated by a `/`, i.e. \\(x/x_\mathrm{Max}\\).
+Items subject to limitations are colored in <span class="green">green</span> and end with `OK`, or in <span class="red">red</span> and end with `ERR`, depending on whether the limits are respected or exceeded, respectively. Non-colored items are either not subject to limitations (if the corresponding limit is equal to 0) or they contribute to the items whose name end with a gliph in parenthesis (if the corresponding limit is equal to the the same gliph).
+
+
 
 ### Side Notes
 
@@ -115,12 +122,6 @@ The export to PDF feature requires both [pandoc](http://pandoc.org/installing.ht
 The VCS capabilities are managed through [git](https://git-scm.com/downloads), which should be installed
 and set up separately.
 Additional automation may be obtained with [GNU Make](https://www.gnu.org/software/make/), for example for automatically running the plotting scripts, converting `svg` diagrams to `png`, running this script, etc.
-
-
-## Explanation of 'Summary of Results'
-Each line consist of an item (e.g. word count or file size) followed by the numeric result of the analysis, \\(x\\) and the corresponding limit \\(x_\mathrm{Max}\\) separated by a `/`, i.e. \\(x/x_\mathrm{Max}\\).
-Items subject to limitations are colored in <span class="green">green</span> and end with `OK`, or in <span class="red">red</span> and end with `ERR`, depending on whether the limits are respected or exceeded, respectively. Non-colored items are either not subject to limitations (if the corresponding limit is equal to 0) or they contribute to the items whose name end with a gliph in parenthesis (if the corresponding limit is equal to the the same gliph).
-Please refer to the command-line help, the in-code documentation or the source code itself for further reference.
 
 
 ## Writing Style
