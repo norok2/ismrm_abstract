@@ -1,7 +1,7 @@
 Honolulu Abstract
 =================
 
-<center>- or -</center>
+ - or -
 
 How to manage your ISMRM abstract offline and live happier ever since (Honolulu/2017 edition)
 =============================================================================================
