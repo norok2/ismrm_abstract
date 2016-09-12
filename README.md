@@ -6,9 +6,7 @@ Honolulu Abstract
 How to manage your ISMRM abstract offline and live happier ever since (Honolulu/2017 edition)
 =============================================================================================
 
-
-## Author
-[Riccardo Metere](mailto:metere@cbs.mpg.de)
+by [Riccardo Metere](mailto:metere@cbs.mpg.de)
 
 
 ## Introduction
@@ -39,7 +37,8 @@ If other (enough) people feel the same, we could probably put some pressure to h
 
     If you have any question, please feel free to contact me.
 
-# Technical Specification
+
+## Technical Specification
 The script expects an input file formatted as MarkDown (+double-backslash extension) and outputs a *fixed version* of the file which contain a new section (*Summary of Results*) with the results of checking against the ISMRM abstract limits.
 The *Summary of Results* is also printed to the terminal (eventually colored, a dark background is expected/recommended).
 To run this script only Python (preferably 3.5) is required, but the optional export  features will be unavailable.
@@ -50,12 +49,14 @@ The VCS capabilities are managed through [git](https://git-scm.com/downloads), w
 and set up separately.
 Additional automation may be obtained with [GNU Make](https://www.gnu.org/software/make/), for example for automatically running the plotting scripts, converting `svg` diagrams to `png`, running this script, etc.
 
-# Explanation of 'Summary of Results'
+
+## Explanation of 'Summary of Results'
 Each line consist of an item (e.g. word count or file size) followed by the numeric result of the analysis, \\(x\\) and the corresponding limit \\(x_\mathrm{Max}\\) separated by a `/`, i.e. \\(x/x_\mathrm{Max}\\).
 Items subject to limitations are colored in <span class="green">green</span> and end with `OK`, or in <span class="red">red</span> and end with `ERR`, depending on whether the limits are respected or exceeded, respectively. Non-colored items are either not subject to limitations (if the corresponding limit is equal to 0) or they contribute to the items whose name end with a gliph in parenthesis (if the corresponding limit is equal to the the same gliph).
 Please refer to the command-line help, the in-code documentation or the source code itself for further reference.
 
-# Writing Style
+
+## Writing Style
 To keep your MarkDown source clean, it is recommended to make a wise use of new lines and text editor capabilities. Particularly, a dynamic word wrapping feature is of great help in maintaining long lines without the need to manually deal with unwanted new lines as result of unforeseen edits. Feel free to use the provided template.
 
 Additionally, keep in mind the recommendation from the ISMRM are reported below.:
