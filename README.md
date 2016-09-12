@@ -38,7 +38,7 @@ Please note that for the purpose of submission a custom notation is suggested, m
 ### Figures and Tables
 
 Figures should be included with a line starting with `![]`, followed by their path between parenthesis, e.g. `(path/to/figure.png)`. The resulting figure link reads: `![](path/to/figure.png)`.
-Alternatively, if a link to the figure in the HTML is desired, the following notation should be used (`1` should be a number and should different for each figures):
+Alternatively, if a link to the figure in the HTML is desired, the following notation should be used ('1') should be a number and should different for each figures):
 
     [1]:path/to/figure.png
     [![][1]][1]

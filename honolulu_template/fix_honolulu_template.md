@@ -156,3 +156,34 @@ A text is a text is a text. The quick brown fox jumps over the lazy dog.
 A text is a text is a text. The quick brown fox jumps over the lazy dog. 
 A text is a text is a text. The quick brown fox jumps over the lazy dog.   
 
+
+
+
+
+## Test Results
+I: Word Count Total (⋆)                                   750 / 750     ....OK
+⋆: Word Count: Authors                                     12 / 0       ..... 
+I: Word Count: Synopsis                                    94 / 100     ....OK
+⋆: Word Count: Purpose⋆                                   196 / ⋆       ..... 
+⋆: Word Count: Methods⋆                                   230 / ⋆       ..... 
+⋆: Word Count: Results⋆                                   111 / ⋆       ..... 
+⋆: Word Count: Discussion⋆                                162 / ⋆       ..... 
+⋆: Word Count: Conclusion⋆                                 51 / ⋆       ..... 
+⋆: Word Count: References                                  72 / 0       ..... 
+⋆: Word Count: Acknowledgements                            85 / 0       ..... 
+I: Word Count: Figure 1                                    95 / 100     ....OK
+I: Word Count: Figure 2                                    95 / 100     ....OK
+I: Word Count: Figure 3                                    95 / 100     ....OK
+I: Word Count: Figure 4                                    95 / 100     ....OK
+I: Word Count: Figure 5                                    95 / 100     ....OK
+I: Number of figures                                        5 / 5       ....OK
+I: Number of captions                                       5 / 5       ....OK
+I: Matching number of figures and captions                  5 = 5       ....OK
+I: "figs/honolulu1.png"                                1.7 MB / 2.0 MB  ....OK
+I: "figs/honolulu2.png"                                1.6 MB / 2.0 MB  ....OK
+I: "figs/honolulu3.png"                                1.5 MB / 2.0 MB  ....OK
+I: "figs/honolulu4.png"                                1.6 MB / 2.0 MB  ....OK
+I: "figs/honolulu5.png"                                1.5 MB / 2.0 MB  ....OK
+
+------------------------------------------------------------------------------
+                                                              Final Result: OK
