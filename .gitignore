@@ -1,5 +1,8 @@
 # Local stuff
 update_from_scripts.sh
+*.pdf
+*.selfcontained.html
+
 
 # backup files
 *~
