@@ -36,8 +36,8 @@ from __future__ import (
 
 try:
     from builtins import (
-        bytes, dict, int, list, object, range, str, ascii, chr, hex, input,
-        next, oct, open, pow, round, super, filter, map, zip)
+        bytes, dict, int, list, object, range, str, ascii, chr, hex,
+        input, next, oct, open, pow, round, super, filter, map, zip)
 except ImportError:
     pass
 
@@ -59,7 +59,7 @@ import re  # Regular expression operations
 
 # ======================================================================
 # :: Version
-__version__ = '0.1.0.0'
+__version__ = '0.1.0.1'
 
 # ======================================================================
 # :: Script details
@@ -126,6 +126,10 @@ D_LOG = '.{name}.{source}.log'
 # :: gliph for marking
 GLIPH = '⋆'
 
+# :: test results additional text
+D_TITLE = 'Test Results'
+D_FINAL = 'Final Result: {result}'
+
 # :: the CSS to use
 D_CSS = [
     'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,'
@@ -143,7 +147,7 @@ h2 { font-size: 125%; color: #339; margin: 1.2ex auto 0ex; }
 h3 { font-size: 110%; color: #33c; margin: 1.0ex auto 0ex; }
 p { font-size: 100%; margin: 0.4ex auto 1ex; }
 hr { clear: both; }
-section { overflow: auto; margin: 0ex; padding; 0ex; }
+section { overflow: auto; margin: 0ex; padding: 0ex; }
 img { max-width: 100%; max-height: 96vh; }
 
 .red { color: red; }
@@ -710,8 +714,8 @@ def fix(
 def gen_report(
         lines,
         tests,
-        title='Test Results',
-        final='Final Result: {result}',
+        title=D_TITLE,
+        final=D_FINAL,
         hdr_style=+2,
         prefix='',
         suffix='',
@@ -736,7 +740,7 @@ def gen_report(
     Returns:
         text (str): The report as valid MarkDown (eventually HTML-enriched).
     """
-    text = '\n' * 2
+    text = '\n' * 3
     # title
     if hdr_style > 0:
         i = hdr_style - 1
@@ -851,6 +855,9 @@ def honolulu(
                 if is_valid else '(`{}` not found)'.format(args[0])
             msg('W: VCS backup failed {}.'.format(reason))
 
+    # :: title
+    msg(': {}'.format(D_TITLE.format(**locals())), fmt='{t.bold}{t.blue}')
+
     # :: word count
     blocks, num_words_total, num_words_full = word_count(
         in_filepath, skip_sections=D_SKIP_SECTIONS, encoding=encoding)
@@ -908,8 +915,16 @@ def honolulu(
         _test_pass(0 <= fig_size <= limits['fig_size'], txt, tests,
                    attaches)
 
+    # :: final test
+    final_test = all([test for test in tests if test is not None])
+    color = 'green' if final_test else 'red'
+    result = 'OK' if final_test else 'ERR'
+    msg('{:^{n}s}'.format(D_FINAL.format(**locals()), n=len(attaches[-1])),
+        fmt='{{t.bold}}{{t.{color}}}'.format(color=color))
+
     # :: generate fixed version
-    fix(in_filepath, out_filepath, gen_report(attaches, tests), encoding,
+    fix(in_filepath, out_filepath,
+        gen_report(attaches, tests) if attach else '', encoding,
         force=force, verbose=verbose)
 
     # :: export to HTML and PDF
@@ -930,7 +945,8 @@ def honolulu(
         if check_redo([in_filepath, __file__], [html_filepath], force):
             with open(in_filepath, 'rb') as fileobj:
                 in_pipe = fileobj.read().decode(encoding)
-            in_pipe += gen_report(attaches, tests, use_html=True)
+            if attach:
+                in_pipe += gen_report(attaches, tests, use_html=True)
             args, is_valid = which(TOOLS['md2html'].format(**locals()))
             if is_valid:
                 ret_code, p_stdout, p_stderr = execute(
@@ -955,9 +971,6 @@ def honolulu(
                     msg('PDF: {}'.format(pdf_filepath))
                 else:
                     msg('W: cannot export PDF without `{}`.'.format(args[0]))
-
-    if not all([test for test in tests if test is not None]):
-        msg('WARNING! SOME TESTS HAVE FAILED!')
 
 
 # ======================================================================
