@@ -93,6 +93,7 @@ A text is a text is a text. The quick brown fox jumps over the lazy dog.
 A text is a text is a text. The quick brown fox jumps over the lazy dog.
 
 
+
 ## Figures
 
 
@@ -119,6 +120,7 @@ A text is a text is a text. The quick brown fox jumps over the lazy dog.
 A text is a text is a text. The quick brown fox jumps over the lazy dog.
 A text is a text is a text. The quick brown fox jumps over the lazy dog.
 
+
 ### Figure 3
 [3]:figs/honolulu3.png
 [![][3]][3]
@@ -130,6 +132,7 @@ A text is a text is a text. The quick brown fox jumps over the lazy dog.
 A text is a text is a text. The quick brown fox jumps over the lazy dog.
 A text is a text is a text. The quick brown fox jumps over the lazy dog.
 
+
 ### Figure 4
 [4]:figs/honolulu4.png
 [![][4]][4]
@@ -140,6 +143,7 @@ A text is a text is a text. The quick brown fox jumps over the lazy dog.
 A text is a text is a text. The quick brown fox jumps over the lazy dog.
 A text is a text is a text. The quick brown fox jumps over the lazy dog.
 A text is a text is a text. The quick brown fox jumps over the lazy dog.
+
 
 ### Figure 5
 [5]:figs/honolulu5.png
