@@ -184,6 +184,5 @@ I: "figs/honolulu2.png"                                1.6 MB / 2.0 MB  ....OK
 I: "figs/honolulu3.png"                                1.5 MB / 2.0 MB  ....OK
 I: "figs/honolulu4.png"                                1.6 MB / 2.0 MB  ....OK
 I: "figs/honolulu5.png"                                1.5 MB / 2.0 MB  ....OK
-
 ------------------------------------------------------------------------------
                                                               Final Result: OK
