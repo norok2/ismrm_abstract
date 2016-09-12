@@ -691,7 +691,7 @@ def fix(
     if os.path.dirname(out_filepath) == '':
         out_filepath = os.path.join(in_dirpath, out_filepath)
 
-    if check_redo([in_filepath], [out_filepath], force):
+    if check_redo([in_filepath, __file__], [out_filepath], force):
         with open(in_filepath, 'rb') as i_file:
             stream = i_file.read().decode(encoding)
             i_file.close()
@@ -773,7 +773,7 @@ def gen_report(
         final_test = all([test for test in tests if test is not None])
         color = 'green' if final_test else 'red'
         result = 'OK' if final_test else 'ERR'
-        text += '\n' + '-' * len(lines[-1]) + '\n'
+        text += '-' * len(lines[-1]) + '\n'
         text += '<span class="{}">'.format(color) if use_html else ''
         text += '{:>{n}s}'.format(
             final.format(**locals()), n=len(lines[-1]) if not use_html else '')

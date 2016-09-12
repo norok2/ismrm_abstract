@@ -1,5 +1,5 @@
 # Local stuff
-update_from_scripts.sh
+update.sh
 *.pdf
 *.selfcontained.html
 
