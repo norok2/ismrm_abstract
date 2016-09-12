@@ -36,8 +36,8 @@ from __future__ import (
 
 try:
     from builtins import (
-        bytes, dict, int, list, object, range, str, ascii, chr, hex, input,
-        next, oct, open, pow, round, super, filter, map, zip)
+        bytes, dict, int, list, object, range, str, ascii, chr, hex,
+        input, next, oct, open, pow, round, super, filter, map, zip)
 except ImportError:
     pass
 
@@ -59,7 +59,7 @@ import re  # Regular expression operations
 
 # ======================================================================
 # :: Version
-__version__ = '0.1.0.0'
+__version__ = '0.1.0.1'
 
 # ======================================================================
 # :: Script details
@@ -114,9 +114,12 @@ TOOLS = dict((
      ' {css_str} {self_contained_str} '
      ' --read markdown+tex_math_double_backslash --write html5'),
     ('html2pdf',
-     'wkhtmltopdf --page-size A4 --margin-bottom 15mm --margin-left 15mm '
-     '--margin-right 15mm --margin-top 15mm --javascript-delay 2000 '
-     '--image-dpi {figs_dpi} {html_filepath} {pdf_filepath}'),
+     'wkhtmltopdf --page-size A4 --orientation portrait --print-media-type'
+     ' --margin-bottom 15mm --margin-left 15mm'
+     ' --margin-right 15mm --margin-top 15mm '
+     ' --javascript-delay 2000'
+     # ' --image-dpi {figs_dpi} --title "{title}"'
+     ' {html_filepath} {pdf_filepath}'),
     ('vcs',
      'git commit -uno -a -m "Save before validation."')
 ))
@@ -126,10 +129,15 @@ D_LOG = '.{name}.{source}.log'
 # :: gliph for marking
 GLIPH = '⋆'
 
+# :: test results additional text
+D_TESTS_TITLE = 'Test Results'
+D_TESTS_FINAL = 'Final Result: {result}'
+
 # :: the CSS to use
 D_CSS = [
     'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,'
     '400|Roboto+Mono:100,100i,300,300i,400,400i']
+D_CSS = []
 D_CSS_FILEPATH = 'default.css'
 D_CSS_FILECONTENT = \
     '/* automatically generate by `{__file__}` */'.format(**locals()) + '''
@@ -143,7 +151,7 @@ h2 { font-size: 125%; color: #339; margin: 1.2ex auto 0ex; }
 h3 { font-size: 110%; color: #33c; margin: 1.0ex auto 0ex; }
 p { font-size: 100%; margin: 0.4ex auto 1ex; }
 hr { clear: both; }
-section { overflow: auto; margin: 0ex; padding; 0ex; }
+section { overflow: auto; margin: 0ex; padding: 0ex; }
 img { max-width: 100%; max-height: 96vh; }
 
 .red { color: red; }
@@ -165,7 +173,7 @@ img { max-width: 100%; max-height: 96vh; }
 #test-results > p { text-align: center; font-size: 130%; }
 
 @media print {
-    body { max-width: 100%; font-size: 11pt; }
+    body { max-width: 100%; font-size: 10pt; }
     h1, h2, h3, h4, h5, h6 {
         page-break-before: auto; page-break-after: avoid; }
     p, span { page-break-inside: avoid; page-break-after: auto; }
@@ -710,8 +718,8 @@ def fix(
 def gen_report(
         lines,
         tests,
-        title='Test Results',
-        final='Final Result: {result}',
+        title=D_TESTS_TITLE,
+        final=D_TESTS_FINAL,
         hdr_style=+2,
         prefix='',
         suffix='',
@@ -736,7 +744,7 @@ def gen_report(
     Returns:
         text (str): The report as valid MarkDown (eventually HTML-enriched).
     """
-    text = '\n' * 2
+    text = '\n' * 3
     # title
     if hdr_style > 0:
         i = hdr_style - 1
@@ -851,9 +859,17 @@ def honolulu(
                 if is_valid else '(`{}` not found)'.format(args[0])
             msg('W: VCS backup failed {}.'.format(reason))
 
+    # :: title
+    msg(': {}'.format(D_TESTS_TITLE.format(**locals())), fmt='{t.bold}{t.blue}')
+
     # :: word count
     blocks, num_words_total, num_words_full = word_count(
         in_filepath, skip_sections=D_SKIP_SECTIONS, encoding=encoding)
+
+    title = blocks[0]['title']
+    msg(': {:<76s}{}'.format(
+        title[:76] if len(title) < 76 else title[:73],
+        '...' if len(title) > 76 else ''))
 
     txt = '{:<48s}  {:>18s}'.format(
         'Word Count Total ({})'.format(GLIPH),
@@ -908,8 +924,17 @@ def honolulu(
         _test_pass(0 <= fig_size <= limits['fig_size'], txt, tests,
                    attaches)
 
+    # :: final test
+    final_test = all([test for test in tests if test is not None])
+    color = 'green' if final_test else 'red'
+    result = 'OK' if final_test else 'ERR'
+    msg('{:^{n}s}'.format(D_TESTS_FINAL.format(**locals()),
+                          n=len(attaches[-1])),
+        fmt='{{t.bold}}{{t.{color}}}'.format(color=color))
+
     # :: generate fixed version
-    fix(in_filepath, out_filepath, gen_report(attaches, tests), encoding,
+    fix(in_filepath, out_filepath,
+        gen_report(attaches, tests) if attach else '', encoding,
         force=force, verbose=verbose)
 
     # :: export to HTML and PDF
@@ -930,14 +955,18 @@ def honolulu(
         if check_redo([in_filepath, __file__], [html_filepath], force):
             with open(in_filepath, 'rb') as fileobj:
                 in_pipe = fileobj.read().decode(encoding)
-            in_pipe += gen_report(attaches, tests, use_html=True)
+            if attach:
+                in_pipe += gen_report(attaches, tests, use_html=True)
             args, is_valid = which(TOOLS['md2html'].format(**locals()))
             if is_valid:
                 ret_code, p_stdout, p_stderr = execute(
                     args, in_pipe, log=D_LOG, verbose=verbose)
-                with open(html_filepath, 'wb') as fileobj:
-                    fileobj.write(p_stdout.encode(encoding))
-                msg('HTML: {}'.format(html_filepath))
+                if ret_code == 0:
+                    with open(html_filepath, 'wb') as fileobj:
+                        fileobj.write(p_stdout.encode(encoding))
+                    msg('HTML: {}'.format(html_filepath))
+                else:
+                    msg('E: No HTML was produced.')
             else:
                 msg('W: cannot export HTML without `{}`.'.format(args[0]))
 
@@ -952,12 +981,12 @@ def honolulu(
                 if is_valid:
                     ret_code, p_stdout, p_stderr = execute(
                         args, log=D_LOG, verbose=verbose)
-                    msg('PDF: {}'.format(pdf_filepath))
+                    if ret_code == 0:
+                        msg('PDF: {}'.format(pdf_filepath))
+                    else:
+                        msg('E: No PDF was produced.')
                 else:
                     msg('W: cannot export PDF without `{}`.'.format(args[0]))
-
-    if not all([test for test in tests if test is not None]):
-        msg('WARNING! SOME TESTS HAVE FAILED!')
 
 
 # ======================================================================

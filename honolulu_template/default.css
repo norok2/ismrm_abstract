@@ -1,0 +1,80 @@
+/* automatically generate by `/home/raid1/metere/scripts/honolulu_abstract.py` */
+body {
+    margin: 0ex auto 4ex;
+    font: normal normal 300 12pt "Roboto", sans-serif; }
+h1, h2, h3, h4, h5, h6 { margin: 0.8ex auto 0ex; clear: both; }
+h1, h2, h3 { margin: 2ex auto 0ex; font-weight: 400; }
+h1 { font-size: 140%; color: #336; margin: 1.6ex auto 0ex; }
+h2 { font-size: 125%; color: #339; margin: 1.2ex auto 0ex; }
+h3 { font-size: 110%; color: #33c; margin: 1.0ex auto 0ex; }
+p { font-size: 100%; margin: 0.4ex auto 1ex; }
+hr { clear: both; }
+section { overflow: auto; margin: 0ex; padding: 0ex; }
+img { max-width: 100%; max-height: 96vh; }
+
+.red { color: red; }
+.green { color: green; }
+
+/* improved appearance */
+#authors h2 { display: none; }
+#authors { margin-top: 1ex; }
+#authors > ol { font-size: 85%; }
+#synopsis > p { font-weight: 400; }
+#synopsis + section, #references, #figures, #test-results {
+    margin-top: 2.0ex; }
+#figures section h3 { margin: 0.4em auto 0em; }
+#figures section { border-bottom: 1px solid #666; }
+#figures section:first-of-type { border-top: 1px solid #666; }
+#test-results > :not(h2) {
+    font-family: "Roboto Mono", monospace; font-size: 80%; }
+#test-results > ul { list-style-type: none; padding-left: 0ex; }
+#test-results > p { text-align: center; font-size: 130%; }
+
+@media print {
+    body { max-width: 100%; font-size: 10pt; }
+    h1, h2, h3, h4, h5, h6 {
+        page-break-before: auto; page-break-after: avoid; }
+    p, span { page-break-inside: avoid; page-break-after: auto; }
+    table { page-break-inside: auto; }
+    tr { page-break-inside: avoid; page-break-after: avoid; }
+    tbody { page-break-inside: avoid; page-break-after: auto; }
+    #test-results, #figures { page-break-before: always; }
+    hr { visibility: hidden; }
+    img { max-width: 515px; max-height: 205px; }
+    #figures figure, #figures a {
+        float: left; margin: 0.1em 1em 0em 0em; padding: 0em; }
+    #figures h2 { margin: 0em auto 0.6em; }
+    #figures h3 { margin: 0em auto 0.1em; }
+}
+
+@media screen {
+    body { max-width: 95%; font-size: 11.5pt; }
+    #test-results > :not(h2) { font-size: 1.65vw; }
+    #figures, #test-results { margin-top: 1em; }
+    #figures figure, #figures a {
+        float: left; margin: 0.1em 1em 0em 0em; padding: 0em; }
+    #figures p::before {
+        content: ""; min-width: 12em; display: block; overflow: hidden;
+        padding: 0ex; margin: 0ex; }
+}
+
+@media screen and (min-width: 800px) {
+    body { max-width: 80%; }
+    #test-results > :not(h2) { font-size: 1.55vw; }
+}
+
+@media screen and (min-width: 1000px) {
+    body { max-width: 80%; }
+    #test-results > :not(h2) { font-size: 90% }
+}
+
+@media screen and (min-width: 1200px) {
+    body { max-width: 96%; }
+    section .level2 { width: 65%; }
+    #figures { width: 30%; position: absolute; top: 1.6em; left: 68%; }
+    #figures section:last-of-type { border-bottom: none; }
+}
+
+@media screen and (min-width: 1600px) {
+    body { font-size: 12.5pt; }
+}
