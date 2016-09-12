@@ -50,6 +50,52 @@ Tables should be also included as figures. Please use the same heading as for fi
 
 If you have not yet enough motivation to submit your brand new research, have a look at the nice pictures in the template document!
 
+### Command-line help
+
+A full-featured command-line help is availeble, and reported here for convenience:
+
+    usage: honolulu_abstract.py [-h] [--ver] [-v] [-q] [-f] [-i DIR] [-o DIR]
+                                [-x [EXT [EXT ...]]] [-a] [-b] [-l] [-c CSS] [-s]
+                                [-e ENCODING]
+    
+    Test a markdown source for ISMRM abstracts submission constraints.
+    
+    This is optimized for ISMRM 2017 abstracts.
+    
+    Note: only Python is required, but optional features may be unavailable.
+    For colored messages, install the `blessed` or `blessings` Python package
+    (both are available through PyPI).
+    The export to HTML feature requires the `pandoc` binary.
+    The export to PDF feature requires both `pandoc` and `wkhtmltopdf` binaries.
+    The VCS capabilities are managed through `git`, which should be installed
+    and set up separately.
+    
+    optional arguments:
+      -h, --help            show this help message and exit
+      --ver, --version      show program's version number and exit
+      -v, --verbose         increase the level of verbosity [1]
+      -q, --quiet           override verbosity settings to suppress output [False]
+      -f, --force           force new processing [False]
+      -i DIR, --in_filepath DIR
+                            set input filepath [/home/raid1/metere/Documents/paper
+                            work/events/2017-04_honolulu_ismrm2017/abstracts/honol
+                            ulu_abstract/honolulu_abstract/honolulu_template]
+      -o DIR, --out_filepath DIR
+                            set output filepath [None]
+      -x [EXT [EXT ...]], --export [EXT [EXT ...]]
+                            set export format(s) [('html', 'pdf')]
+      -a, --attach          toggle attach results to output/export file(s) [True]
+      -b, --backup          toggle backups before processing [True]
+      -l, --log             toggle log of external tools [True]
+      -c CSS, --css CSS     specify the CSS to use for HTML/PDF export [None]
+      -s, --self-contained  toggle if HTML export should be self contained [False]
+      -e ENCODING, --encoding ENCODING
+                            set the encoding to use [utf-8]
+    
+    v.0.1.0.1 - Riccardo Metere <metere@cbs.mpg.de>
+    License: GNU General Public License version 3 (GPLv3)
+
+
 ### Side Notes
 
 As a side note, I would have liked to have a submission sistem working more like this script (i.e. with a predictable behavior and with copy/paste capabilities) rather than that half-way WYSIWYG user-interface provided.
