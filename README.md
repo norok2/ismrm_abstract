@@ -31,7 +31,7 @@ Fortunately, most of this formatting is (or should be) seldom used in such docum
 
 To properly deal with mathematical formulae it is possible to use the so called *double backslash* MarkDown extension. This means that mathematical formulae can be written using standard [LaTeX](https://www.latex-project.org/) and will be beautifully rendered by [MathJax](https://www.mathjax.org/). Therefore, to write mathematical equations you should use: `\\(` and `\\)` for inline math elements, or `\\[` and `\\]` for display math elements.
 
-Please note that for the purpose of submission a custom notation is suggested, making use of `$$` and `$$$` symbols for delimiting display and inline math environments, respectively. The preview system actually also recognize the standard *single backslash* MarkDown extension, but for some reasons this method seems to be deprecated. The *double backslash* notation has been adopted by this script in the hope that any eventual inaccuracies related to this approach will not go unnoticed at the time of submission.
+The *double backslash* notation will be converted to the submission system custom notation by the script. Please note that the submission system custom notation makes use of `$$` and `$$$` symbols for delimiting display and inline math environments, respectively. The preview system actually also recognize the standard *single backslash* MarkDown extension, but for some reasons this method seems to be deprecated. The *double backslash* notation has been adopted by this script in the hope that any eventual inaccuracies related to this approach will not go unnoticed at the time of submission.
 
 
 ### Figures and Tables
@@ -43,8 +43,8 @@ Alternatively, if a link to the figure in the HTML is desired, the following not
     [![][1]][1]
 
 
-A blank like should be separated the figure links and their caption (for improved source readability).
-Since there is no automatic way of reference your figures, you should manually maintain their labels in the caption.
+A blank like should separate the figure links and their caption (for improved source readability).
+Since there is no automatic way of referencing your figures, you should manually maintain their labels in the caption.
 There is no specific limitation to the allowed file formats from this script, but submission system requires 'BMP, GIF, JPEG, JPG, or PNG'. The preferred image file format is PNG, or JPG (only for very large pictures where negligible thin elements).
 If unsure, use PNG.
 
@@ -128,10 +128,7 @@ Additional automation may be obtained with [GNU Make](https://www.gnu.org/softwa
 ## Writing Style
 To keep your MarkDown source clean, it is recommended to make a wise use of new lines and text editor capabilities. Particularly, a dynamic word wrapping feature is of great help in maintaining long lines without the need to manually deal with unwanted new lines as result of unforeseen edits. Feel free to use the provided template.
 
-Additionally, keep in mind the recommendation from the ISMRM are reported below.:
+Also, keep in mind the recommendation from the ISMRM, which are linked below:
 
 - [How to submit your HTML-based abstract](http://www.ismrm.org/2017-annual-meeting-exhibition/2017-call-for-abstracts/how-to-submit-your-html-based-abstract/)
 - [2017 Call for Abstracts](http://www.ismrm.org/2017-annual-meeting-exhibition/2017-call-for-abstracts/)
-
-for further information.
-
