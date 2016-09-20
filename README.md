@@ -14,17 +14,17 @@ This short project consist mainly of the `honolulu_abstract.py` Python script, w
 
 
 ## honolulu_abstract.py
-The ISMRM electronic submission system is not ideal under a variety of situations, including e.g. poor user interface (UI), intermittent internet connection, multiple writing iterations with coauthors, etc.
-For this reasons, some mechanisms to read/write/share your abstract without this limitation may be desireable. By using a combination of open source software, i.e. [Python](https://www.python.org) (easily obtainable with [Anaconda](https://www.continuum.io/)), [pandoc](http://pandoc.org), [wkhtmltopdf](http://wkhtmltopdf.org), [git](https://git-scm.com) and your favorite text editor, like [kate](https://kate-editor.org) or [Atom](https://atom.io/)) it is possible to achieve a reasonable pipeline that can output HTML or PDF documents to be shared with your coauthors or for archiving purposes. Unfortunately, due to the limitations of the UI provided, it is not possible to retain formatting through clipboard actions (i.e. `copy`/`paste` will not store formatting information). This means that if you use **ANY** editor except for the one provided by the submission system you must manually adjust the following text formatting:
+The ISMRM electronic submission system may not be ideal for a variety of reasons, including e.g. poor user interface (UI), dependence on internet connection, multiple writing iterations with coauthors, etc.
+For these reasons, some mechanisms to read/write/share your abstract without these limitations may be desireable. By using a combination of open source software, i.e. [Python](https://www.python.org) (easily obtainable for example through [Anaconda](https://www.continuum.io/)), [pandoc](http://pandoc.org), [wkhtmltopdf](http://wkhtmltopdf.org), [git](https://git-scm.com) and your favorite text editor, like [kate](https://kate-editor.org) or [Atom](https://atom.io/)) it is possible to achieve a reasonable pipeline that can both check your word count and output HTML or PDF documents to be shared with your coauthors (or for archiving purposes). Unfortunately, due to the limitations of the UI provided, it is not possible to retain formatting through clipboard actions (i.e. `copy`/`paste` will not store formatting information). This means that if you use **ANY** editor except for the one provided by the submission system you must manually adjust the following text formatting:
 
-- new lines
+- new lines (!)
 - **bold** or __strong__,
 - *italic* or _slanted_
 - <u>underline</u>
 - super<sup>script</sup>
 - sub<sub>script</sub>
 
-Fortunately, this formatting is (or should be) seldom used in such documents and it is sensible to adjust a reduced number of items upon submission. Note that HTML code, which is usually valid to insert in MarkDown, is inserted verbatim by the submission system, so pay extra attention to strip it from your abstract if you plan to use it in the first place.
+Fortunately, most of this formatting is (or should be) seldom used in such documents and it is sensible to adjust a reduced number of items upon submission. A notable exception are newlines, which should be used to start new paragraphs. The script will insert triple whitespaces to help quickly locate them during submission. Note that HTML code, which is usually intepreted when inserted in MarkDown, will not display as HTML but rather verbatim by the submission system, so pay extra attention to strip it from your abstract if you plan to use it in the first place.
 
 
 ### Mathematical Formulae
@@ -55,7 +55,7 @@ If you have not yet enough motivation to submit your brand new research, have a 
 
 ### Explanation of 'Test Results'
 Each line consist of an item (e.g. word count or file size) followed by the numeric result of the analysis `x` and the corresponding limit `X` separated by a `/`, i.e. `x / X`.
-Items subject to limitations are colored in <span class="green">green</span> and end with `OK`, or in <span class="red">red</span> and end with `ERR`, depending on whether the limits are respected or exceeded, respectively. Non-colored items are either not subject to limitations (if the corresponding limit is equal to 0) or they contribute to the items whose name end with a gliph in parenthesis (if the corresponding limit is equal to the the same gliph).
+Items subject to limitations are colored in <span class="green">green</span> and end with `OK`, or in <span class="red">red</span> and end with `ERR`, depending on whether the limits are respected or exceeded, respectively. Non-colored items are either not subject to limitations (if the corresponding limit is equal to 0) or they contribute to the items whose name end with a gliph in parenthesis (if the corresponding limit is equal to the same gliph).
 
 
 ### Command-line help
