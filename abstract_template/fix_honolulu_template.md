@@ -1,4 +1,4 @@
-Honolulu Abstract Template
+Ismrm Abstract Template
 ==========================
 
 
@@ -98,7 +98,7 @@ A text is a text is a text. The quick brown fox jumps over the lazy dog.
 
 
 ### Figure 1
-[1]:figs/honolulu1.png
+[1]:figs/ismrm1.png
 [![][1]][1]
 
 Fig.1: The quick brown fox jumps over the lazy dog. 
@@ -110,7 +110,7 @@ A text is a text is a text. The quick brown fox jumps over the lazy dog.
 
 
 ### Figure 2
-[2]:figs/honolulu2.png
+[2]:figs/ismrm2.png
 [![][2]][2]
 
 Fig.2: The quick brown fox jumps over the lazy dog. 
@@ -122,7 +122,7 @@ A text is a text is a text. The quick brown fox jumps over the lazy dog.
 
 
 ### Figure 3
-[3]:figs/honolulu3.png
+[3]:figs/ismrm3.png
 [![][3]][3]
 
 Fig.3:  The quick brown fox jumps over the lazy dog. 
@@ -134,7 +134,7 @@ A text is a text is a text. The quick brown fox jumps over the lazy dog.
 
 
 ### Figure 4
-[4]:figs/honolulu4.png
+[4]:figs/ismrm4.png
 [![][4]][4]
 
 Fig.4: The quick brown fox jumps over the lazy dog. 
@@ -146,7 +146,7 @@ A text is a text is a text. The quick brown fox jumps over the lazy dog.
 
 
 ### Figure 5
-[5]:figs/honolulu5.png
+[5]:figs/ismrm5.png
 [![][5]][5]
 
 Fig.5: The quick brown fox jumps over the lazy dog. 
@@ -179,10 +179,10 @@ I: Word Count: Figure 5                                    95 / 100     ....OK
 I: Number of figures                                        5 / 5       ....OK
 I: Number of captions                                       5 / 5       ....OK
 I: Matching number of figures and captions                  5 = 5       ....OK
-I: "figs/honolulu1.png"                                1.7 MB / 2.0 MB  ....OK
-I: "figs/honolulu2.png"                                1.6 MB / 2.0 MB  ....OK
-I: "figs/honolulu3.png"                                1.5 MB / 2.0 MB  ....OK
-I: "figs/honolulu4.png"                                1.6 MB / 2.0 MB  ....OK
-I: "figs/honolulu5.png"                                1.5 MB / 2.0 MB  ....OK
+I: "figs/ismrm1.png"                                1.7 MB / 2.0 MB  ....OK
+I: "figs/ismrm2.png"                                1.6 MB / 2.0 MB  ....OK
+I: "figs/ismrm3.png"                                1.5 MB / 2.0 MB  ....OK
+I: "figs/ismrm4.png"                                1.6 MB / 2.0 MB  ....OK
+I: "figs/ismrm5.png"                                1.5 MB / 2.0 MB  ....OK
 ------------------------------------------------------------------------------
                                                               Final Result: OK
