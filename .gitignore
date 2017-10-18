@@ -2,6 +2,7 @@
 update.sh
 *.pdf
 *.selfcontained.html
+.idea/*
 
 
 # backup files

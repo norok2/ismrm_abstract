@@ -134,15 +134,17 @@ D_TESTS_TITLE = 'Test Results'
 D_TESTS_FINAL = 'Final Result: {result}'
 
 # :: the CSS to use
-D_CSS = [
-    'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,'
-    '400|Roboto+Mono:100,100i,300,300i,400,400i']
+D_CSS = []
+# 'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,'
+# '400|Roboto+Mono:100,100i,300,300i,400,400i']
 D_CSS_FILEPATH = 'default.css'
 D_CSS_FILECONTENT = \
     '/* automatically generate by `{__file__}` */'.format(**locals()) + '''
 body {
     margin: 0ex auto 4ex;
-    font: normal normal 300 12pt "Roboto", sans-serif; }
+    font: normal normal 300 12pt "Roboto", "Dejavu Sans",
+        "Bitstream Vera Sans", "FreeSans", "Liberation Sans", "Verdana",
+        "Arial", sans-serif; }
 h1, h2, h3, h4, h5, h6 { margin: 0.8ex auto 0ex; clear: both; }
 h1, h2, h3 { margin: 2ex auto 0ex; font-weight: 400; }
 h1 { font-size: 140%; color: #336; margin: 1.6ex auto 0ex; }
