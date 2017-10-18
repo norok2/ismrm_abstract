@@ -3,7 +3,7 @@
 """
 Test a markdown source for ISMRM abstracts submission constraints.
 
-This is optimized for ISMRM 2017 abstracts.
+This is optimized for 2018 abstracts.
 
 Note: only Python is required, but optional features may be unavailable.
 For colored messages, install the `blessed` or `blessings` Python package
@@ -59,7 +59,7 @@ import re  # Regular expression operations
 
 # ======================================================================
 # :: Version
-__version__ = '0.1.0.1'
+__version__ = '0.1.0.2'
 
 # ======================================================================
 # :: Script details
@@ -236,13 +236,13 @@ def msg(
     Display a feedback message to the standard output.
 
     Args:
-        text (any): Message to display.
+        text (str|Any): Message to display or object with `__repr__`.
         verb_lvl (int): Current level of verbosity.
         verb_threshold (int): Threshold level of verbosity.
         fmt (str): Format of the message (if `blessed` supported).
             If None, a standard formatting is used.
-        *args (tuple): Positional arguments to be passed to `print`.
-        **kwargs (dict): Keyword arguments to be passed to `print`.
+        *args (*tuple): Positional arguments to be passed to `print`.
+        **kwargs (**dict): Keyword arguments to be passed to `print`.
 
     Returns:
         None.
@@ -261,9 +261,8 @@ def msg(
         >>> msg(' : a b c', fmt='cyan')  # if ANSI Terminal, cyan text
          : a b c
     """
-    if verb_lvl >= verb_threshold and text:
+    if verb_lvl >= verb_threshold and text is not None:
         # if blessed/blessings is not present, no coloring
-        blessed = None
         try:
             import blessed
         except ImportError:
@@ -272,8 +271,13 @@ def msg(
             except ImportError:
                 blessed = None
 
-        if blessed:
+        try:
             t = blessed.Terminal()
+        except (ValueError, AttributeError):
+            t = None
+
+        if blessed and t:
+            text = str(text)
             if not fmt:
                 if VERB_LVL['low'] < verb_threshold <= VERB_LVL['medium']:
                     e = t.cyan
@@ -290,17 +294,17 @@ def msg(
                 else:
                     e = t.white
                 # first non-whitespace word
-                txt1 = text.split(None, 1)[0]
+                txt1 = text.split(None, 1)[0] if len(text) > 0 else ''
                 # initial whitespaces
                 n = text.find(txt1)
                 txt0 = text[:n]
                 # rest
                 txt2 = text[n + len(txt1):]
-                txt_kwargs = {
-                    'e1': e + (t.bold if e == t.white else ''),
-                    'e2': e + (t.bold if e != t.white else ''),
-                    't0': txt0, 't1': txt1, 't2': txt2, 'n': t.normal}
-                text = '{t0}{e1}{t1}{n}{e2}{t2}{n}'.format(**txt_kwargs)
+                txt_kws = dict(
+                    e1=e + (t.bold if e == t.white else ''),
+                    e2=e + (t.bold if e != t.white else ''),
+                    t0=txt0, t1=txt1, t2=txt2, n=t.normal)
+                text = '{t0}{e1}{t1}{n}{e2}{t2}{n}'.format_map(txt_kws)
             else:
                 if 't.' not in fmt:
                     fmt = '{{t.{}}}'.format(fmt)
@@ -481,49 +485,69 @@ def multi_replace(text, replaces):
 def check_redo(
         in_filepaths,
         out_filepaths,
-        force=False):
+        force=False,
+        verbose=D_VERB_LVL,
+        makedirs=False,
+        no_empty_input=False):
     """
     Check if input files are newer than output files, to force calculation.
 
     Args:
-        in_filepaths (iterable[str]): Input filepaths for computation.
+        in_filepaths (iterable[str]|None): Input filepaths for computation.
         out_filepaths (iterable[str]): Output filepaths for computation.
         force (bool): Force computation to be re-done.
+        verbose (int): Set level of verbosity.
+        makedirs (bool): Create output dirpaths if not existing.
+        no_empty_input (bool): Check if the input filepath list is empty.
 
     Returns:
         force (bool): True if the computation is to be re-done.
 
     Raises:
         IndexError: If the input filepath list is empty.
+            Only if `no_empty_input` is True.
         IOError: If any of the input files do not exist.
     """
-    # todo: include output_dir autocreation
-    # check if input is not empty
-    if not in_filepaths:
-        raise IndexError('List of input files is empty.')
-
-    # check if input exists
-    for in_filepath in in_filepaths:
-        if not os.path.exists(in_filepath):
-            raise IOError('Input file does not exists.')
-
     # check if output exists
     if not force:
         for out_filepath in out_filepaths:
-            if out_filepath:
-                if not os.path.exists(out_filepath):
-                    force = True
-                    break
+            if out_filepath and not os.path.exists(out_filepath):
+                force = True
+                break
+
+    # create output directories
+    if force and makedirs:
+        for out_filepath in out_filepaths:
+            out_dirpath = os.path.dirname(out_filepath)
+            if not os.path.isdir(out_dirpath):
+                msg('mkdir: {}'.format(out_dirpath),
+                    verbose, VERB_LVL['highest'])
+                os.makedirs(out_dirpath)
 
     # check if input is older than output
     if not force:
-        for in_filepath, out_filepath in \
-                itertools.product(in_filepaths, out_filepaths):
-            if in_filepath and out_filepath:
-                if os.path.getmtime(in_filepath) \
-                        > os.path.getmtime(out_filepath):
+        # check if input is not empty
+        if in_filepaths:
+            # check if input exists
+            for in_filepath in in_filepaths:
+                if not os.path.exists(in_filepath):
+                    raise IOError('Input file does not exists.')
+
+            for in_filepath, out_filepath in \
+                    itertools.product(in_filepaths, out_filepaths):
+                if os.path.getmtime(in_filepath) > os.path.getmtime(
+                        out_filepath):
                     force = True
                     break
+        elif no_empty_input:
+            raise IOError('Input file list is empty.')
+
+    if force:
+        msg('Calc: {}'.format(out_filepaths), verbose, VERB_LVL['higher'])
+        msg('From: {}'.format(in_filepaths), verbose, VERB_LVL['highest'])
+    else:
+        msg('Skip: {}'.format(out_filepaths), verbose, VERB_LVL['higher'])
+        msg('From: {}'.format(in_filepaths), verbose, VERB_LVL['highest'])
     return force
 
 
@@ -784,7 +808,7 @@ def gen_report(
 
 
 # ======================================================================
-def honolulu(
+def ismrm_abstract(
         in_filepath,
         out_filepath,
         export=('html', 'pdf'),
@@ -813,7 +837,7 @@ def honolulu(
         figs_dpi (float): Resolution of the figures in exports.
         encoding (str): The encoding to use.
         limits (dict): Limits to be used for testing.
-            Defaults to ISMRM 2017 Honolulu abstracts.
+            Defaults to ISMRM 2018 Paris abstracts.
         force (bool): Force new processing.
         verbose (int):set the level of verbosity.
 
@@ -1080,7 +1104,7 @@ def main():
 
     kws = vars(args)
     kws.pop('quiet')
-    honolulu(**kws)
+    ismrm_abstract(**kws)
 
     exec_time = datetime.datetime.now() - begin_time
     msg('ExecTime: {}'.format(exec_time), args.verbose, VERB_LVL['debug'])

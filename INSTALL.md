@@ -16,7 +16,7 @@ Optional Requirements
 
 Installation
 ------------
-- copy the script `honolulu_abstract.py` into a folder
+- copy the script `ismrm_abstract.py` into a folder
 - (optionally make sure that the folder is in your $PATH)
 - Done! :-)
 

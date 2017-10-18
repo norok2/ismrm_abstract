@@ -1,19 +1,22 @@
-Honolulu Abstract
+ISMRM Abstract
 =================
 
 ...or...
 
-How to manage your ISMRM abstract offline and live happier ever since (Honolulu/2017 edition)
+How to manage your ISMRM abstract offline and live happier ever since (Paris/2018 edition)
 =============================================================================================
 
 by [Riccardo Metere](mailto:metere@cbs.mpg.de)
 
+## Disclaimer
+This work is neither affiliated nor supported by ISMRM.
+
 
 ## Introduction
-This short project consist mainly of the `honolulu_abstract.py` Python script, which aims at providing a viable way of writing offline and sharing your abstracts for the ISMRM annual meeting and exhibition 2017 in Honolulu. Technically, the tool checks the limits suggested/imposed by the submission system in a source file written with a subset of MarkDown (with the double backslash convention for mathematical elements). The appearance of the document can be tweaked through CSS.
+This short project consist mainly of the `ismrm_abstract.py` Python script, which aims at providing a viable way of writing offline and sharing your abstracts for the ISMRM annual meeting and exhibition 2018 in Paris. Technically, the tool checks the limits suggested/imposed by the submission system in a source file written with a subset of MarkDown (with the double backslash convention for mathematical elements). The appearance of the document can be tweaked through CSS.
 
 
-## honolulu_abstract.py
+## ismrm_abstract.py
 The ISMRM electronic submission system may not be ideal for a variety of reasons, including e.g. poor user interface (UI), dependence on internet connection, multiple writing iterations with coauthors, etc.
 For these reasons, some mechanisms to read/write/share your abstract without these limitations may be desireable. By using a combination of open source software, i.e. [Python](https://www.python.org) (easily obtainable for example through [Anaconda](https://www.continuum.io/)), [pandoc](http://pandoc.org), [wkhtmltopdf](http://wkhtmltopdf.org), [git](https://git-scm.com) and your favorite text editor, like [kate](https://kate-editor.org) or [Atom](https://atom.io/)) it is possible to achieve a reasonable pipeline that can both check your word count and output HTML or PDF documents to be shared with your coauthors (or for archiving purposes). Unfortunately, due to the limitations of the UI provided, it is not possible to retain formatting through clipboard actions (i.e. `copy`/`paste` will not store formatting information). This means that if you use **ANY** editor except for the one provided by the submission system you must manually adjust the following text formatting:
 
@@ -62,13 +65,13 @@ Items subject to limitations are colored in <span class="green">green</span> and
 
 A full-featured command-line help is availeble, and reported here for convenience:
 
-    usage: honolulu_abstract.py [-h] [--ver] [-v] [-q] [-f] [-i DIR] [-o DIR]
+    usage: ismrm_abstract.py [-h] [--ver] [-v] [-q] [-f] [-i DIR] [-o DIR]
                                 [-x [EXT [EXT ...]]] [-a] [-b] [-l] [-c CSS] [-s]
                                 [-e ENCODING]
     
     Test a markdown source for ISMRM abstracts submission constraints.
     
-    This is optimized for ISMRM 2017 abstracts.
+    This is optimized for 2018 abstracts.
     
     Note: only Python is required, but optional features may be unavailable.
     For colored messages, install the `blessed` or `blessings` Python package
@@ -85,9 +88,8 @@ A full-featured command-line help is availeble, and reported here for convenienc
       -q, --quiet           override verbosity settings to suppress output [False]
       -f, --force           force new processing [False]
       -i DIR, --in_filepath DIR
-                            set input filepath [/home/raid1/metere/Documents/paper
-                            work/events/2017-04_honolulu_ismrm2017/abstracts/honol
-                            ulu_abstract/honolulu_abstract/honolulu_template]
+                            set input filepath [ismrm_abstract/ismrm_abstract/
+                            ismrm_template]
       -o DIR, --out_filepath DIR
                             set output filepath [None]
       -x [EXT [EXT ...]], --export [EXT [EXT ...]]
@@ -100,7 +102,7 @@ A full-featured command-line help is availeble, and reported here for convenienc
       -e ENCODING, --encoding ENCODING
                             set the encoding to use [utf-8]
     
-    v.0.1.0.1 - Riccardo Metere <metere@cbs.mpg.de>
+    v.0.1.0.2 - Riccardo Metere <metere@cbs.mpg.de>
     License: GNU General Public License version 3 (GPLv3)
 
 Please refer to the in-code documentation or the source code itself for further reference.
@@ -130,5 +132,5 @@ To keep your MarkDown source clean, it is recommended to make a wise use of new 
 
 Also, keep in mind the recommendation from the ISMRM, which are linked below:
 
-- [How to submit your HTML-based abstract](http://www.ismrm.org/2017-annual-meeting-exhibition/2017-call-for-abstracts/how-to-submit-your-html-based-abstract/)
-- [2017 Call for Abstracts](http://www.ismrm.org/2017-annual-meeting-exhibition/2017-call-for-abstracts/)
+- [How to submit your HTML-based abstract](https://www.ismrm.org/18m/how-to-submit-your-html-based-abstract/)
+- [2018 Call for Abstracts](https://www.ismrm.org/18m/2018-call-for-abstracts/)
