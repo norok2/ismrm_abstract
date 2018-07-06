@@ -493,8 +493,8 @@ def check_redo(
     Check if input files are newer than output files, to force calculation.
 
     Args:
-        in_filepaths (iterable[str]|None): Input filepaths for computation.
-        out_filepaths (iterable[str]): Output filepaths for computation.
+        in_filepaths (Iterable[str]|None): Input filepaths for computation.
+        out_filepaths (Iterable[str]): Output filepaths for computation.
         force (bool): Force computation to be re-done.
         verbose (int): Set level of verbosity.
         makedirs (bool): Create output dirpaths if not existing.
@@ -564,14 +564,14 @@ def word_count(
 
     Args:
         in_filepath (str): The path to the input file.
-        skip_tokens (iterable[str]): Skip token identifier.
+        skip_tokens (Iterable[str]): Skip token identifier.
             Ignore lines starting with any of the tokens indicated.
-        hdr_tokens (iterable[str]): Header token identifier.
+        hdr_tokens (Iterable[str]): Header token identifier.
             Lines stating with any of the tokens are considered header.
-        hdr_tokens_nl (iterable[str]): Header-after-new-line token identifier.
+        hdr_tokens_nl (Iterable[str]): Header-after-new-line token identifier.
             Ignore lines immediately above and starting with any of the tokens
             indicated.
-        skip_sections (iterable[str]): Skip from word count.
+        skip_sections (Iterable[str]): Skip from word count.
             The sections included in this list will not count toward the
             total word count.
         encoding (str): The encoding to use.
