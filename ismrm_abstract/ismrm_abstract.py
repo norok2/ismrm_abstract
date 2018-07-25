@@ -32,7 +32,7 @@ and set up separately.
 # ======================================================================
 # :: Future Imports (including `future` PyPI package, if available)
 from __future__ import (
-    division, absolute_import, print_function, unicode_literals)
+    division, absolute_import, print_function, unicode_literals, )
 
 try:
     from builtins import (
