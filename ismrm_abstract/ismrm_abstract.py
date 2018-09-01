@@ -975,7 +975,7 @@ def ismrm_abstract(
         css_str = ' '.join([_MD2HTML_MULTI_CSS + item for item in css])
         msg('CSS: {}'.format(css))
 
-        html_filepath = os.path.splitext(in_filepath)[0] + '.html'
+        html_filepath = os.path.splitext(in_filepath)[0] + '.htm'
         self_contained_str = '--self-contained' if self_contained else ''
         if check_redo([in_filepath, __file__], [html_filepath], force):
             with open(in_filepath, 'rb') as fileobj:
