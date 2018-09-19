@@ -16,6 +16,10 @@ This work is neither affiliated nor supported by ISMRM.
 This short project consist mainly of the `ismrm_abstract.py` Python script, which aims at providing a viable way of writing offline and sharing your abstracts for the ISMRM annual meeting and exhibition 2019 in Montreal. Technically, the tool checks the limits suggested/imposed by the submission system in a source file written with a subset of MarkDown (with the double backslash convention for mathematical elements). The appearance of the document can be tweaked through CSS.
 
 
+## How To Start
+- Install the `ismrm_abstract.py` (see `INSTALL.md`)
+- Copy 
+
 ## ismrm_abstract.py
 The ISMRM electronic submission system may not be ideal for a variety of reasons, including e.g. poor user interface (UI), dependence on internet connection, multiple writing iterations with coauthors, etc.
 For these reasons, some mechanisms to read/write/share your abstract without these limitations may be desireable. By using a combination of open source software, i.e. [Python](https://www.python.org) (easily obtainable for example through [Anaconda](https://www.continuum.io/)), [pandoc](http://pandoc.org), [wkhtmltopdf](http://wkhtmltopdf.org), [git](https://git-scm.com) and your favorite text editor, like [kate](https://kate-editor.org) or [Visual Studio Code](https://code.visualstudio.com/)) it is possible to achieve a reasonable pipeline that can both check your word count and output HTML or PDF documents to be shared with your coauthors (or for archiving purposes). Unfortunately, due to the limitations of the UI provided, it is not possible to retain formatting through clipboard actions (i.e. `copy`/`paste` will not store formatting information). This means that if you use **ANY** editor except for the one provided by the submission system you must manually adjust the following text formatting:
@@ -63,7 +67,7 @@ Items subject to limitations are colored in <span class="green">green</span> and
 
 ### Command-line help
 
-A full-featured command-line help is availeble, and reported here for convenience:
+A full-featured command-line help is available, and reported here for convenience:
 
     usage: ismrm_abstract.py [-h] [--ver] [-v] [-q] [-f] [-i DIR] [-o DIR]
                                 [-x [EXT [EXT ...]]] [-a] [-b] [-l] [-c CSS] [-s]
