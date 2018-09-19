@@ -3,7 +3,7 @@ ISMRM Abstract
 
 ...or...
 
-How to manage your ISMRM abstract offline and live happier ever since (Paris/2018 edition)
+How to manage your ISMRM abstract offline and live happier ever since (Montreal/2019 edition)
 =============================================================================================
 
 by [Riccardo Metere](mailto:riccardo@metere.it)
@@ -13,7 +13,7 @@ This work is neither affiliated nor supported by ISMRM.
 
 
 ## Introduction
-This short project consist mainly of the `ismrm_abstract.py` Python script, which aims at providing a viable way of writing offline and sharing your abstracts for the ISMRM annual meeting and exhibition 2018 in Paris. Technically, the tool checks the limits suggested/imposed by the submission system in a source file written with a subset of MarkDown (with the double backslash convention for mathematical elements). The appearance of the document can be tweaked through CSS.
+This short project consist mainly of the `ismrm_abstract.py` Python script, which aims at providing a viable way of writing offline and sharing your abstracts for the ISMRM annual meeting and exhibition 2019 in Montreal. Technically, the tool checks the limits suggested/imposed by the submission system in a source file written with a subset of MarkDown (with the double backslash convention for mathematical elements). The appearance of the document can be tweaked through CSS.
 
 
 ## ismrm_abstract.py
@@ -71,7 +71,7 @@ A full-featured command-line help is availeble, and reported here for convenienc
     
     Test a markdown source for ISMRM abstracts submission constraints.
     
-    This is optimized for 2018 abstracts.
+    This is optimized for 2019 abstracts.
     
     Note: only Python is required, but optional features may be unavailable.
     For colored messages, install the `blessed` or `blessings` Python package
@@ -133,4 +133,4 @@ To keep your MarkDown source clean, it is recommended to make a wise use of new 
 Also, keep in mind the recommendation from the ISMRM, which are linked below:
 
 - [How to submit your HTML-based abstract](https://www.ismrm.org/19m/call/how-to-submit-your-html-based-abstract/)
-- [2018 Call for Abstracts](https://www.ismrm.org/19m/call/)
+- [2019 Call for Abstracts](https://www.ismrm.org/19m/call/)

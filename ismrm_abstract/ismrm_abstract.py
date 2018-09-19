@@ -837,7 +837,7 @@ def ismrm_abstract(
         figs_dpi (float): Resolution of the figures in exports.
         encoding (str): The encoding to use.
         limits (dict): Limits to be used for testing.
-            Defaults to ISMRM 2018 Paris abstracts.
+            Defaults to ISMRM 2019 Montreal abstracts.
         force (bool): Force new processing.
         verbose (int):set the level of verbosity.
 
