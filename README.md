@@ -6,7 +6,7 @@ ISMRM Abstract
 How to manage your ISMRM abstract offline and live happier ever since (Paris/2018 edition)
 =============================================================================================
 
-by [Riccardo Metere](mailto:metere@cbs.mpg.de)
+by [Riccardo Metere](mailto:riccardo@metere.it)
 
 ## Disclaimer
 This work is neither affiliated nor supported by ISMRM.
@@ -102,7 +102,7 @@ A full-featured command-line help is availeble, and reported here for convenienc
       -e ENCODING, --encoding ENCODING
                             set the encoding to use [utf-8]
     
-    v.0.1.0.2 - Riccardo Metere <metere@cbs.mpg.de>
+    v.0.1.0.3 - Riccardo Metere <riccardo@metere.it>
     License: GNU General Public License version 3 (GPLv3)
 
 Please refer to the in-code documentation or the source code itself for further reference.

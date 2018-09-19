@@ -14,7 +14,7 @@ The VCS capabilities are managed through `git`, which should be installed
 and set up separately.
 """
 
-#    Copyright (C) 2015-2016 Riccardo Metere <metere@cbs.mpg.de>
+#    Copyright (C) 2015-2018 Riccardo Metere <riccardo@metere.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
