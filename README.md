@@ -18,7 +18,7 @@ This short project consist mainly of the `ismrm_abstract.py` Python script, whic
 
 ## ismrm_abstract.py
 The ISMRM electronic submission system may not be ideal for a variety of reasons, including e.g. poor user interface (UI), dependence on internet connection, multiple writing iterations with coauthors, etc.
-For these reasons, some mechanisms to read/write/share your abstract without these limitations may be desireable. By using a combination of open source software, i.e. [Python](https://www.python.org) (easily obtainable for example through [Anaconda](https://www.continuum.io/)), [pandoc](http://pandoc.org), [wkhtmltopdf](http://wkhtmltopdf.org), [git](https://git-scm.com) and your favorite text editor, like [kate](https://kate-editor.org) or [Atom](https://atom.io/)) it is possible to achieve a reasonable pipeline that can both check your word count and output HTML or PDF documents to be shared with your coauthors (or for archiving purposes). Unfortunately, due to the limitations of the UI provided, it is not possible to retain formatting through clipboard actions (i.e. `copy`/`paste` will not store formatting information). This means that if you use **ANY** editor except for the one provided by the submission system you must manually adjust the following text formatting:
+For these reasons, some mechanisms to read/write/share your abstract without these limitations may be desireable. By using a combination of open source software, i.e. [Python](https://www.python.org) (easily obtainable for example through [Anaconda](https://www.continuum.io/)), [pandoc](http://pandoc.org), [wkhtmltopdf](http://wkhtmltopdf.org), [git](https://git-scm.com) and your favorite text editor, like [kate](https://kate-editor.org) or [Visual Studio Code](https://code.visualstudio.com/)) it is possible to achieve a reasonable pipeline that can both check your word count and output HTML or PDF documents to be shared with your coauthors (or for archiving purposes). Unfortunately, due to the limitations of the UI provided, it is not possible to retain formatting through clipboard actions (i.e. `copy`/`paste` will not store formatting information). This means that if you use **ANY** editor except for the one provided by the submission system you must manually adjust the following text formatting:
 
 - new lines (!)
 - **bold** or __strong__,
@@ -132,5 +132,5 @@ To keep your MarkDown source clean, it is recommended to make a wise use of new 
 
 Also, keep in mind the recommendation from the ISMRM, which are linked below:
 
-- [How to submit your HTML-based abstract](https://www.ismrm.org/18m/how-to-submit-your-html-based-abstract/)
-- [2018 Call for Abstracts](https://www.ismrm.org/18m/2018-call-for-abstracts/)
+- [How to submit your HTML-based abstract](https://www.ismrm.org/19m/call/how-to-submit-your-html-based-abstract/)
+- [2018 Call for Abstracts](https://www.ismrm.org/19m/call/)

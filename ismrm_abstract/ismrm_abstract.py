@@ -3,7 +3,7 @@
 """
 Test a markdown source for ISMRM abstracts submission constraints.
 
-This is optimized for 2018 abstracts.
+This is optimized for 2019 abstracts.
 
 Note: only Python is required, but optional features may be unavailable.
 For colored messages, install the `blessed` or `blessings` Python package
@@ -59,14 +59,14 @@ import re  # Regular expression operations
 
 # ======================================================================
 # :: Version
-__version__ = '0.1.0.2'
+__version__ = '0.1.0.3'
 
 # ======================================================================
 # :: Script details
 INFO = {
     'name': 'ISMRM_abstract',
-    'author': 'Riccardo Metere <metere@cbs.mpg.de>',
-    'copyright': 'Copyright (C) 2015-2016',
+    'author': 'Riccardo Metere <r.metere@donders.ru.nl>',
+    'copyright': 'Copyright (C) 2015-2018',
     'license': 'License: GNU General Public License version 3 (GPLv3)',
     'notice':
         """
