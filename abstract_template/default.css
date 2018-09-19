@@ -1,7 +1,9 @@
-/* automatically generate by `/home/raid1/metere/scripts/ismrm_abstract.py` */
+/* automatically generate by `/home/ricmet/.local/bin/ismrm_abstract.py` */
 body {
     margin: 0ex auto 4ex;
-    font: normal normal 300 12pt "Roboto", sans-serif; }
+    font: normal normal 300 12pt "Roboto", "Dejavu Sans",
+        "Bitstream Vera Sans", "FreeSans", "Liberation Sans", "Verdana",
+        "Arial", sans-serif; }
 h1, h2, h3, h4, h5, h6 { margin: 0.8ex auto 0ex; clear: both; }
 h1, h2, h3 { margin: 2ex auto 0ex; font-weight: 400; }
 h1 { font-size: 140%; color: #336; margin: 1.6ex auto 0ex; }
