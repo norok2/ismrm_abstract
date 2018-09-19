@@ -1,5 +1,5 @@
 ISMRM Abstract
-=================
+==============
 
 ...or...
 
@@ -18,7 +18,17 @@ This short project consist mainly of the `ismrm_abstract.py` Python script, whic
 
 ## How To Start
 - Install the `ismrm_abstract.py` (see `INSTALL.md`)
-- Copy 
+- Create a directory where to put your abstract, e.g. `cool_mri_research`
+- Create a MarkDown file with the same name as the directiory and append the `.md` extension, e.g. `cool_mri_research.md`
+- Create a `figs` subdirectory and put the figures (in the Portable Network Graphics format `.png`) for the abstract there.
+- Open a terminal on the newly created directory
+- Run the script `ismrm_abstract.py` without additional parameters
+
+## What to expect?
+Running the script will generate a file with the same name as the input and a `fix_` string prepended to it, e.g. `fix_cool_mri_research.md`.
+This is the file you should `copy`/`paste` from when submitting the abstract.
+It is possible to start from the `abstract_template/abstract_template.md` provided in this repository.
+
 
 ## ismrm_abstract.py
 The ISMRM electronic submission system may not be ideal for a variety of reasons, including e.g. poor user interface (UI), dependence on internet connection, multiple writing iterations with coauthors, etc.
