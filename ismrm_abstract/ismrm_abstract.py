@@ -891,7 +891,10 @@ def ismrm_abstract(
     blocks, num_words_total, num_words_full = word_count(
         in_filepath, skip_sections=D_SKIP_SECTIONS, encoding=encoding)
 
-    title = blocks[0]['title']
+    try:
+        title = blocks[0]['title']
+    except IndexError:
+        raise ValueError('Could not parse file (syntax error or empty?)')
     msg(': {:<76s}{}'.format(
         title[:76] if len(title) < 76 else title[:73],
         '...' if len(title) > 76 else ''))
