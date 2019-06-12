@@ -230,8 +230,8 @@ def msg(
         verb_lvl=D_VERB_LVL,
         verb_threshold=D_VERB_LVL,
         fmt=None,
-        *args,
-        **kwargs):
+        *_args,
+        **_kws):
     """
     Display a feedback message to the standard output.
 
@@ -241,8 +241,8 @@ def msg(
         verb_threshold (int): Threshold level of verbosity.
         fmt (str): Format of the message (if `blessed` supported).
             If None, a standard formatting is used.
-        *args (*tuple): Positional arguments to be passed to `print`.
-        **kwargs (**dict): Keyword arguments to be passed to `print`.
+        *_args: Positional arguments for `print()`.
+        **_kws: Keyword arguments for `print()`.
 
     Returns:
         None.
@@ -311,7 +311,7 @@ def msg(
                 if '{}' not in fmt:
                     fmt += '{}'
                 text = fmt.format(text, t=t) + t.normal
-        print(text, *args, **kwargs)
+        print(text, *_args, **_kws)
 
 
 # ======================================================================
