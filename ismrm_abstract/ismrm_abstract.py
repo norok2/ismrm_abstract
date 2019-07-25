@@ -887,7 +887,7 @@ def ismrm_abstract(
 
     # :: title
     msg(': {}'.format(D_TESTS_TITLE.format_map(vars())),
-        fmt='{t.bold}{t.blue}')
+        fmtt='{t.bold}{t.blue}')
 
     # :: word count
     blocks, num_words_total, num_words_full = word_count(
@@ -960,7 +960,7 @@ def ismrm_abstract(
     result = 'OK' if final_test else 'ERR'
     msg('{:^{n}s}'.format(D_TESTS_FINAL.format_map(vars()),
                           n=len(attaches[-1])),
-        fmt='{{t.bold}}{{t.{color}}}'.format(color=color))
+        fmtt='{{t.bold}}{{t.{color}}}'.format(color=color))
 
     # :: generate fixed version
     fix(in_filepath, out_filepath,
