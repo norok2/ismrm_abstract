@@ -139,7 +139,7 @@ D_CSS = []
 # '400|Roboto+Mono:100,100i,300,300i,400,400i']
 D_CSS_FILEPATH = 'default.css'
 D_CSS_FILECONTENT = \
-    '/* automatically generate by `{__file__}` */'.format(**locals()) + '''
+    '/* automatically generate by `{__file__}` */'.format_map(vars()) + '''
 body {
     margin: 0ex auto 4ex;
     font: normal normal 300 12pt "Roboto", "Dejavu Sans",
@@ -229,18 +229,22 @@ def msg(
         text,
         verb_lvl=D_VERB_LVL,
         verb_threshold=D_VERB_LVL,
-        fmt=None,
+        fmtt=True,
         *_args,
         **_kws):
     """
     Display a feedback message to the standard output.
 
     Args:
-        text (str|Any): Message to display or object with `__repr__`.
+        text (str|Any): Message to display or object with `__str__`.
         verb_lvl (int): Current level of verbosity.
         verb_threshold (int): Threshold level of verbosity.
-        fmt (str): Format of the message (if `blessed` supported).
-            If None, a standard formatting is used.
+        fmtt (str|bool|None): Format of the message (if `blessed` supported).
+            If True, a standard formatting is used.
+            If False, empty string or None, no formatting is applied.
+            If str, the specified formatting is used.
+            This must be in the form of `{t.NAME}` where `NAME` refer to
+            a formatting supported by `Terminal()` from `blessed`/`blessings`.
         *_args: Positional arguments for `print()`.
         **_kws: Keyword arguments for `print()`.
 
@@ -254,31 +258,28 @@ def msg(
         >>> msg(s, VERB_LVL['medium'], VERB_LVL['low'])
         Hello World!
         >>> msg(s, VERB_LVL['low'], VERB_LVL['medium'])  # no output
-        >>> msg(s, fmt='{t.green}')  # if ANSI Terminal, green text
+        >>> msg(s, fmtt='{t.green}')  # if ANSI Terminal, green text
         Hello World!
-        >>> msg('   :  a b c', fmt='{t.red}{}')  # if ANSI Terminal, red text
+        >>> msg('   :  a b c', fmtt='{t.red}{}')  # if ANSI Terminal,
+        red text
            :  a b c
-        >>> msg(' : a b c', fmt='cyan')  # if ANSI Terminal, cyan text
+        >>> msg(' : a b c', fmtt='cyan')  # if ANSI Terminal, cyan text
          : a b c
     """
     if verb_lvl >= verb_threshold and text is not None:
         # if blessed/blessings is not present, no coloring
         try:
-            import blessed
+            from blessed import Terminal
         except ImportError:
             try:
-                import blessings as blessed
+                from blessings import Terminal
             except ImportError:
-                blessed = None
+                Terminal = False
 
-        try:
-            t = blessed.Terminal()
-        except (ValueError, AttributeError):
-            t = None
-
-        if blessed and t:
+        t = Terminal() if callable(Terminal) else None
+        if t is not None and fmtt:
             text = str(text)
-            if not fmt:
+            if fmtt is True:
                 if VERB_LVL['low'] < verb_threshold <= VERB_LVL['medium']:
                     e = t.cyan
                 elif VERB_LVL['medium'] < verb_threshold < VERB_LVL['debug']:
@@ -304,13 +305,13 @@ def msg(
                     e1=e + (t.bold if e == t.white else ''),
                     e2=e + (t.bold if e != t.white else ''),
                     t0=txt0, t1=txt1, t2=txt2, n=t.normal)
-                text = '{t0}{e1}{t1}{n}{e2}{t2}{n}'.format(**txt_kws)
+                text = '{t0}{e1}{t1}{n}{e2}{t2}{n}'.format_map(txt_kws)
             else:
-                if 't.' not in fmt:
-                    fmt = '{{t.{}}}'.format(fmt)
-                if '{}' not in fmt:
-                    fmt += '{}'
-                text = fmt.format(text, t=t) + t.normal
+                if 't.' not in fmtt:
+                    fmtt = '{{t.{}}}'.format(fmtt)
+                if '{}' not in fmtt:
+                    fmtt += '{}'
+                text = fmtt.format(text, t=t) + t.normal
         print(text, *_args, **_kws)
 
 
@@ -425,7 +426,7 @@ def execute(
             while proc.poll() is None:
                 out_buff = proc.stdout.readline().decode(encoding)
                 p_stdout += out_buff
-                msg(out_buff, fmt='', end='')
+                msg(out_buff, fmtt='', end='')
                 sys.stdout.flush()
             ret_code = proc.wait()
         elif mode == 'call':
@@ -438,9 +439,9 @@ def execute(
             p_stdout = p_stdout.decode(encoding)
             p_stderr = p_stderr.decode(encoding)
             if p_stdout:
-                msg(p_stdout, verbose, VERB_LVL['high'], fmt='')
+                msg(p_stdout, verbose, VERB_LVL['high'], fmtt='')
             if p_stderr:
-                msg(p_stderr, verbose, VERB_LVL['high'], fmt='')
+                msg(p_stderr, verbose, VERB_LVL['high'], fmtt='')
             ret_code = proc.wait()
         else:
             proc.kill()
@@ -451,7 +452,7 @@ def execute(
             pid = proc.pid
             for stream, source in ((p_stdout, 'out'), (p_stderr, 'err')):
                 if stream:
-                    log_filepath = log.format(**locals())
+                    log_filepath = log.format_map(vars())
                     with open(log_filepath, 'wb') as fileobj:
                         fileobj.write(stream.encode(encoding))
     return ret_code, p_stdout, p_stderr
@@ -713,7 +714,7 @@ def fix(
     """
     in_dirpath, in_filename = os.path.split(in_filepath)
     if not out_filepath:
-        out_filepath = out_fmt.format(**locals())
+        out_filepath = out_fmt.format_map(vars())
     if os.path.dirname(out_filepath) == '':
         out_filepath = os.path.join(in_dirpath, out_filepath)
 
@@ -802,7 +803,7 @@ def gen_report(
         text += '-' * len(lines[-1]) + '\n'
         text += '<span class="{}">'.format(color) if use_html else ''
         text += '{:>{n}s}'.format(
-            final.format(**locals()), n=len(lines[-1]) if not use_html else '')
+            final.format_map(vars()), n=len(lines[-1]) if not use_html else '')
         text += '</span>' if use_html else ''
     return text
 
@@ -874,7 +875,7 @@ def ismrm_abstract(
     msg('Input: {}'.format(in_filepath))
 
     if backup:
-        args, is_valid = which(TOOLS['vcs'].format(**locals()))
+        args, is_valid = which(TOOLS['vcs'].format_map(vars()))
         ret_code, p_stdout, p_stderr = execute(
             args, log=D_LOG, verbose=verbose)
         if ret_code == 0:
@@ -885,7 +886,8 @@ def ismrm_abstract(
             msg('W: VCS backup failed {}.'.format(reason))
 
     # :: title
-    msg(': {}'.format(D_TESTS_TITLE.format(**locals())), fmt='{t.bold}{t.blue}')
+    msg(': {}'.format(D_TESTS_TITLE.format_map(vars())),
+        fmt='{t.bold}{t.blue}')
 
     # :: word count
     blocks, num_words_total, num_words_full = word_count(
@@ -956,7 +958,7 @@ def ismrm_abstract(
     final_test = all([test for test in tests if test is not None])
     color = 'green' if final_test else 'red'
     result = 'OK' if final_test else 'ERR'
-    msg('{:^{n}s}'.format(D_TESTS_FINAL.format(**locals()),
+    msg('{:^{n}s}'.format(D_TESTS_FINAL.format_map(vars()),
                           n=len(attaches[-1])),
         fmt='{{t.bold}}{{t.{color}}}'.format(color=color))
 
@@ -985,7 +987,7 @@ def ismrm_abstract(
                 in_pipe = fileobj.read().decode(encoding)
             if attach:
                 in_pipe += gen_report(attaches, tests, use_html=True)
-            args, is_valid = which(TOOLS['md2html'].format(**locals()))
+            args, is_valid = which(TOOLS['md2html'].format_map(vars()))
             if is_valid:
                 ret_code, p_stdout, p_stderr = execute(
                     args, in_pipe, log=D_LOG, verbose=verbose)
@@ -1005,7 +1007,7 @@ def ismrm_abstract(
                            [item for item in css if not '://' in item]
             out_filepaths = [pdf_filepath]
             if check_redo(in_filepaths, out_filepaths, force):
-                args, is_valid = which(TOOLS['html2pdf'].format(**locals()))
+                args, is_valid = which(TOOLS['html2pdf'].format_map(vars()))
                 if is_valid:
                     ret_code, p_stdout, p_stderr = execute(
                         args, log=D_LOG, verbose=verbose)
@@ -1025,16 +1027,14 @@ def handle_arg():
     # :: Create Argument Parser
     arg_parser = argparse.ArgumentParser(
         description=__doc__,
-        epilog='v.{} - {}\n{}'.format(
-            INFO['version'], INFO['author'], INFO['license']),
+        epilog='v.{version} - {author}\n{license}'.format_map(INFO),
         formatter_class=argparse.RawDescriptionHelpFormatter)
     # :: Add POSIX standard arguments
     arg_parser.add_argument(
         '--ver', '--version',
-        version='%(prog)s - ver. {}\n{}\n{} {}\n{}'.format(
-            INFO['version'],
-            next(line for line in __doc__.splitlines() if line),
-            INFO['copyright'], INFO['author'], INFO['notice']),
+        version= \
+            '%(prog)s - ver. {version}\n{}\n{copyright} {author}\n{notice}' \
+                .format(next(l for l in __doc__.splitlines() if l), **INFO),
         action='version')
     arg_parser.add_argument(
         '-v', '--verbose',
